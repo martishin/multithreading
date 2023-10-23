@@ -1,4 +1,4 @@
-class Demonstration {
+class Main {
     public static void main( String args[] ) throws Exception{
        final BlockingQueue<Integer> q = new BlockingQueue<Integer>(5);
 
