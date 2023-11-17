@@ -6,10 +6,6 @@ public class Main {
         final ValueLatch<Integer> valueLatch = new ValueLatch<>();
 
         Thread getter = new Thread(() -> {
-           try {}
-        });
-
-        Thread getter = new Thread(() -> {
             try {
                 System.out.println("Getter waiting for value...");
                 Integer value = valueLatch.getValue();
