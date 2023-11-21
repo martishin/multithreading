@@ -21,8 +21,16 @@ var urls = []string{
 	"https://twitter.com",
 }
 
-func fetchUrl(url string, wg *sync.WaitGroup) {
+func fetchUrlWithWaitGroup(url string, wg *sync.WaitGroup) {
 	defer wg.Done()
+	resp, err := http.Get(url)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(resp.Status)
+}
+
+func fetchUrl(url string) {
 	resp, err := http.Get(url)
 	if err != nil {
 		fmt.Println(err)
@@ -35,7 +43,12 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Home endpoint")
 	wg.Add(len(urls))
 	for _, url := range urls {
-		go fetchUrl(url, &wg)
+		url := url
+
+		go func() {
+			defer wg.Done()
+			fetchUrl(url)
+		}()
 	}
 	wg.Wait()
 	fmt.Println("All Response received successfully")
