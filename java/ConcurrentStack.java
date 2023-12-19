@@ -1,7 +1,7 @@
 import java.util.concurrent.atomic.AtomicReference;
 
 class Main {
-    public static void main(String args[]) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         var stack = new ConcurrentStack<Integer>();
 
         var t1 = new Thread(() -> {
@@ -23,7 +23,7 @@ class Main {
         t2.join();
 
         int counter = 0;
-        while (!stack.empty()) {
+        while (!stack.isEmpty()) {
             stack.pop();
             counter++;
         }
@@ -61,7 +61,7 @@ class ConcurrentStack<E> {
         return oldHead.item;
     }
 
-    public boolean empty() {
+    public boolean isEmpty() {
         return top.get() == null;
     }
 
