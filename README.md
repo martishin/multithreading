@@ -1,1 +1,1 @@
-Interesting multithreading/concurrent examples in Java and Go
+Various examples of multithreading/concurrency in Java and Go
